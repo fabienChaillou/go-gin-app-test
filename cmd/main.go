@@ -1,8 +1,7 @@
 package main
 
 import (
-	"net/http"
-
+	"github.com/fabienChaillou/go-gin-app-test/internal/handler"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,24 +16,8 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 
 	// Initialize the routes
-	initializeRoutes()
+	handler.RegisterRoutes(router)
 
 	// Start serving the application
 	router.Run()
-}
-
-func render(c *gin.Context, data gin.H, templateName string) {
-
-	switch c.Request.Header.Get("Accept") {
-	case "application/json":
-		// Respond with JSON
-		c.JSON(http.StatusOK, data["payload"])
-	case "application/xml":
-		// Respond with XML
-		c.XML(http.StatusOK, data["payload"])
-	default:
-		// Respond with HTML
-		c.HTML(http.StatusOK, templateName, data)
-	}
-
 }

@@ -1,4 +1,4 @@
-package main
+package model
 
 import "errors"
 
@@ -13,11 +13,11 @@ var articleList = []article{
 	article{ID: 2, Title: "Article 2", Content: "Article 2 body"},
 }
 
-func getAllArticles() []article {
+func GetAllArticles() []article {
 	return articleList
 }
 
-func getArticleByID(id int) (*article, error) {
+func GetArticleByID(id int) (*article, error) {
 	for _, a := range articleList {
 		if a.ID == id {
 			return &a, nil
